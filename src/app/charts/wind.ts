@@ -8,9 +8,9 @@ const windChartOption = {
                 lineStyle: {
                     width: 20,
                     color: [
-                        [0.2, '#93C5FD'],
+                        [0.2, '#06B6D4'],
                         [0.6, '#FBBF24'],
-                        [1, '#F87171']
+                        [1, '#DC2626']
                     ]
                 }
             },
