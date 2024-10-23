@@ -8,7 +8,10 @@ import temperatureChartOption from "@/app/charts/temperature";
 import windChartOption from "@/app/charts/wind";
 import compassOption from "@/app/charts/compass";
 import rainChartOption from "@/app/charts/rain";
+import pressureChartOption from "@/app/charts/pressure";
 import MapComponent from '../../app/components/Map';
+import {WeatherConditionMapper} from "@/app/utils/weather-conditions";
+import { useRouter } from 'next/navigation';
 
 interface WeatherPageProps {
     weatherData: Weather;
@@ -17,6 +20,7 @@ interface WeatherPageProps {
     windOption: EChartsOption;
     windDirectionOption: EChartsOption;
     rainOption: EChartsOption;
+    pressureOption: EChartsOption;
 }
 
 const WeatherPage: React.FC<WeatherPageProps> = (
@@ -25,14 +29,28 @@ const WeatherPage: React.FC<WeatherPageProps> = (
         temperatureOption,
         windOption,
         windDirectionOption,
-        rainOption
+        rainOption,
+        pressureOption
     }) => {
     const {location, current} = weatherData;
+    const router = useRouter();
+
+    const goToHomePage = () => {
+        router.push('/'); // Navigate to the /weather page
+    };
 
     // Ensure options are defined before rendering charts
     if (!temperatureOption || !windOption || !windDirectionOption || !rainOption) {
         console.error('Chart options are undefined');
-        return <div>Error: Chart options are not available.</div>;
+        return (
+            <div className="tw-flex tw-flex-col tw-h-full tw-w-full tw-justify-center tw-items-center tw-gap-10 error-container tw-p-5">
+                <h2>Error: Chart options are not available for location provided.</h2>
+                <button type="button"
+                        className="tw-bg-red-600 tw-text-white tw-px-4 tw-py-2 tw-rounded" onClick={goToHomePage}>
+                    Go back
+                </button>
+            </div>
+        );
     }
 
     const modifiedWindDirectionOption = {
@@ -56,6 +74,11 @@ const WeatherPage: React.FC<WeatherPageProps> = (
             },
         ],
     };
+
+    const mapper = new WeatherConditionMapper();
+    const condition = mapper.getMappingByCode(weatherData.current.condition.code);
+    const conditionImage = weatherData.current.is_day ? `http://openweathermap.org/img/wn/${condition?.openweathermapDayIcon}.png` : `http://openweathermap.org/img/wn/${condition?.openweathermapNightIcon}.png`;
+    console.log('condition: ', condition);
 
     return (
         <>
@@ -121,23 +144,33 @@ const WeatherPage: React.FC<WeatherPageProps> = (
                         />
                     </div>
 
+
+                    {/* AIR PRESSURE */}
+                    <div className="weather-card tw-shadow-md tw-rounded-lg tw-p-6 tw-flex tw-flex-col tw-items-center
+                tw-w-full tw-h-[400px] animated fadeIn">
+                        <h3 className="tw-mb-4">Air Pressure</h3>
+                        <ReactECharts
+                            option={pressureOption}
+                            notMerge={true}
+                            lazyUpdate={true}
+                            theme={"theme_name"}
+                            style={{width: '100%', height: '100%'}}
+                        />
+                    </div>
+
                     {/* CONDITION */}
                     <div className="weather-card tw-shadow-md tw-rounded-lg tw-p-6 tw-flex tw-flex-col tw-items-center
                     tw-w-full tw-h-[400px] animated fadeIn">
                         <h3 className="tw-mb-4">{current.condition.text}</h3>
                         <div>
-                            <img src={current.condition.icon}
-                                 alt="Condition image" width={100} height={100}/>
+                            {/*    <img src={current.condition.icon}*/}
+                            {/*         alt="Condition image" width={120} height={120}/>*/}
+                            <img src={conditionImage} alt={condition?.condition} width={120} height={120}/>
                         </div>
                         <h3 className="tw-mb-4">Humidity</h3>
-                        <h1>{current.humidity}%</h1>
-                    </div>
-
-                    {/* MAP */}
-                    <div className="weather-card tw-shadow-md tw-rounded-lg tw-p-6 tw-flex tw-flex-col tw-items-center
-                    tw-w-full tw-h-[400px] animated fadeIn">
-                        <h3 className="tw-mb-4">{location.name}</h3>
-                            <MapComponent lat={location.lat} lng={location.lon} width="100%" height="100%" zoom={10}/>
+                        <div className="tw-flex tw-flex-auto tw-justify-center tw-items-center">
+                            <h1>{current.humidity}%</h1>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,6 +185,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const windOption = {...windChartOption};
     const windDirectionOption = {...compassOption};
     const rainOption = {...rainChartOption};
+    const pressureOption = {...pressureChartOption};
     const location = context.query.q || "London";
 
     if (!API_KEY) {
@@ -172,6 +206,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         setTemperatureGauge(weatherData.current.temp_c);
         setWindOptions(weatherData.current.wind_mph, weatherData.current.wind_dir, weatherData.current.wind_degree);
         setRainOptions(weatherData.current.precip_mm);
+        setPressureOptions(weatherData.current.pressure_mb);
 
         console.log('WEATHER DATA: ', weatherData);
 
@@ -185,7 +220,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                 temperatureOption,
                 windOption,
                 windDirectionOption,
-                rainOption
+                rainOption,
+                pressureOption
             },
         };
     } catch (error) {
@@ -303,6 +339,15 @@ const setRainOptions = (rainMM: number) => {
     rainChartOption.series[0].data = [
         {
             value: rainMM
+        }
+    ];
+};
+
+const setPressureOptions = (pressure: number) => {
+
+    pressureChartOption.series[0].data = [
+        {
+            value: pressure
         }
     ];
 };

@@ -54,6 +54,10 @@ p {
   }
 }
 
+h1, h2, h3, h4, p {
+  margin: 0 !important;
+}
+
 :root {
   --background: theme('colors.slate.200');
   --foreground: theme('colors.slate.900');
@@ -107,4 +111,9 @@ body {
 .map-container {
   margin-top: 80px;
   height: calc(100vh - 80px);
+}
+
+.error-container {
+  height: 100vh;
+  text-align: center;
 }
