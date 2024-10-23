@@ -77,3 +77,34 @@ body {
     text-wrap: balance;
   }
 }
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: theme('colors.gray.800');
+  z-index: 40;
+  overflow: hidden;
+  height: 80px;
+  h2 {
+    line-height: 3rem !important;
+  }
+}
+
+.app-body {
+  margin-top: 80px;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  position: absolute;
+  width: 100%;
+}
+
+.weather-card {
+  background-color: rgba(#475569, 0.4);
+}
+
+.map-container {
+  margin-top: 80px;
+  height: calc(100vh - 80px);
+}

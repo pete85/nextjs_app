@@ -3,6 +3,7 @@ const temperatureChartOption = {
         {
             type: 'gauge',
             center: ['50%', '60%'],
+            radius: '70%',
             startAngle: 200,
             endAngle: -20,
             min: -30,
@@ -25,7 +26,7 @@ const temperatureChartOption = {
                 }
             },
             axisTick: {
-                distance: -45,
+                distance: -25,
                 splitNumber: 5,
                 lineStyle: {
                     width: 2,
@@ -33,7 +34,7 @@ const temperatureChartOption = {
                 }
             },
             splitLine: {
-                distance: -55,
+                distance: -30,
                 length: 14,
                 lineStyle: {
                     width: 3,
@@ -41,7 +42,7 @@ const temperatureChartOption = {
                 }
             },
             axisLabel: {
-                distance: -25,
+                distance: -20,
                 color: '#E2E8F0',
                 fontSize: 18,
                 fontFamily: 'Montserrat',

@@ -2,11 +2,12 @@ const compassOption = {
     series: [
         {
             type: 'gauge',
+            radius: '55%',
             startAngle: 90,
             endAngle: -269.9999,
             min: 0,
             max: 360,
-            splitNumber: 8,
+            splitNumber: 4,
             itemStyle: {
                 color: '#FFAB91',
             },
@@ -17,14 +18,24 @@ const compassOption = {
                 },
             },
             pointer: {
-                width: 6,
+                width: 5,
                 length: '60%',
                 itemStyle: {
-                    color: '#FF6F61',
+                    color: '#DC2626',
+                    borderColor: '#CBD5E1',
+                },
+            },
+            anchor: {
+                show: true,
+                showAbove: true,
+                size: 5,
+                itemStyle: {
+                    color: '#DC2626',
                 },
             },
             axisTick: {
-                distance: -20,
+                show: false,
+                distance: -10,
                 splitNumber: 5,
                 lineStyle: {
                     color: '#E2E8F0',
@@ -32,24 +43,18 @@ const compassOption = {
                 },
             },
             splitLine: {
-                distance: -32,
+                distance: -25,
                 length: 10,
                 lineStyle: {
-                    color: '#E2E8F0',
+                    color: '#DC2626',
                     width: 3,
                 },
             },
             axisLabel: {
-                distance: -40,
-                color: '#555'
-            },
-            anchor: {
-                show: true,
-                showAbove: true,
-                size: 15,
-                itemStyle: {
-                    color: '#FF6F61',
-                },
+                distance: -25,
+                color: '#E2E8F0',
+                fontSize: 18,
+                fontFamily: 'Montserrat',
             },
             detail: {
                 valueAnimation: true,

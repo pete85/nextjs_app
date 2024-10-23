@@ -1,4 +1,4 @@
-const windChartOption = {
+const rainChartOption = {
     series: [
         {
             type: 'gauge',
@@ -6,13 +6,19 @@ const windChartOption = {
             radius: '70%',
             startAngle: 200,
             endAngle: -20,
+            min: 0,
+            max: 40,
             axisLine: {
                 lineStyle: {
                     width: 20,
                     color: [
-                        [0.2, '#06B6D4'],
-                        [0.6, '#FBBF24'],
-                        [1, '#DC2626']
+                        [0.2, '#7DD3FC'],
+                        [0.4, '#38BDF8'],
+                        [0.6, '#0EA5E9'],
+                        [0.8, '#0284C7'],
+                        [1, '#0369A1'],
+                        // [0.6, '#075985'],
+                        // [0.7, '#0C4A6E'],
                     ]
                 }
             },
@@ -53,7 +59,7 @@ const windChartOption = {
                 fontSize: 30,
                 fontWeight: 'bolder',
                 fontFamily: 'Montserrat',
-                formatter: '{value} mph',
+                formatter: '{value} mm',
                 color: 'inherit'
             },
             data: [
@@ -65,4 +71,4 @@ const windChartOption = {
     ]
 };
 
-export default windChartOption;
+export default rainChartOption;
