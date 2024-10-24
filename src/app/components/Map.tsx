@@ -13,7 +13,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ lat, lng, zoom }) => {
         throw new Error('Google Maps API Key is missing');
     }
 
-    const [windowSize, setWindowSize] = useState({ width: 640, height: 640 });
+    const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 });
 
     // Function to dynamically update the window size for 100vw/100vh
     useEffect(() => {

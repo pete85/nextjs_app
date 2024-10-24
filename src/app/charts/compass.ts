@@ -60,7 +60,7 @@ const compassOption = {
                 valueAnimation: true,
                 formatter: '{value}°',
                 fontSize: 20,
-                color: 'auto',
+                color: 'inherit',
                 offsetCenter: [0, '60%'],
                 textBorderColor: '#292524',
                 textBorderWidth: 3,

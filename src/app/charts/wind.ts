@@ -18,7 +18,7 @@ const windChartOption = {
             },
             pointer: {
                 itemStyle: {
-                    color: 'auto',
+                    color: 'inherit',
                     borderColor: '#CBD5E1',
                 }
             },

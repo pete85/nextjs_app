@@ -24,7 +24,7 @@ const rainChartOption = {
             },
             pointer: {
                 itemStyle: {
-                    color: 'auto',
+                    color: 'inherit',
                     borderColor: '#CBD5E1',
                 }
             },
