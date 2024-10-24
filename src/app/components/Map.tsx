@@ -32,7 +32,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ lat, lng, zoom }) => {
     }, []);
 
     // Construct the Google Static Maps API URL
-    const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${windowSize.width}x${windowSize.height}&key=${GOOGLE_MAPS_KEY}&maptype=roadmap`;
+    const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${windowSize.width}x${windowSize.height}&language=en&key=${GOOGLE_MAPS_KEY}&maptype=roadmap`;
 
     return (
         <div style={{ width: '100vw', height: '100vh' }}>

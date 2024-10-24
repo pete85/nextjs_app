@@ -1,3 +1,16 @@
+# Next.js Weather app
+
+This application is a current weather information app built using Next.js, where users can view the live weather conditions for a selected location. A key highlight is the use of Server-side rendering (SSR), which allows the app to fetch weather data dynamically from external APIs, ensuring that content is delivered quickly and optimized for performance and SEO.
+
+Throughout the development, several important features were implemented:
+
+* Next.js: The app utilizes Next.js for server-side rendering and dynamic routing, providing a fast, reliable user experience.
+* Tailwind CSS: Tailwind CSS is applied to ensure a responsive and modern design across different screen sizes, making the app visually appealing and user-friendly.
+* Google Maps API: Integrated the Google Maps API to display an interactive map of the selected location, allowing users to see their weather in a geographical context.
+* Error Handling and Fallbacks: Set up robust error handling to provide fallback content (like default maps) when issues with API calls occur.
+
+![img.png](img.png)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
