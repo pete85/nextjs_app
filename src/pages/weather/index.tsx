@@ -82,11 +82,15 @@ const WeatherPage: React.FC<WeatherPageProps> = (
 
     return (
         <>
-            <div className="tw-flex tw-flex-auto tw-justify-center tw-items-center app-header tw-p-5">
+            <div className="tw-flex tw-flex-auto tw-justify-between tw-items-center app-header tw-p-5">
                 <h2>Weather in {location.name}</h2>
+                <button type="button"
+                        className="tw-bg-red-600 tw-text-white tw-px-4 tw-py-2 tw-rounded" onClick={goToHomePage}>
+                    Go back
+                </button>
             </div>
             <div className="tw-z-10 tw-absolute tw-w-full map-container">
-                <MapComponent lat={location.lat} lng={location.lon} width="100%" height="100%" zoom={13}/>
+                <MapComponent lat={location.lat} lng={location.lon} zoom={9}/>
             </div>
             <div className="tw-flex tw-z-20 tw-flex-col tw-p-5 app-body">
                 <div className="tw-grid tw-grid-cols-1 tw-gap-4 lg:tw-grid-cols-2 xl:tw-grid-cols-3 tw-p-4">

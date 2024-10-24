@@ -1,50 +1,47 @@
-import {GoogleMap, LoadScript, Circle} from '@react-google-maps/api';
-import mapDark from "@/app/charts/map";
+import React, { useState, useEffect } from 'react';
 
 interface MapComponentProps {
     lat: number;
     lng: number;
-    width: string;
-    height: string;
     zoom: number;
 }
 
-const MapComponent: React.FC<MapComponentProps> = ({lat, lng, width, height, zoom}) => {
-    const center = {lat, lng};
-
-    const containerStyle = {
-        width: width,
-        height: height
-    };
-
+const MapComponent: React.FC<MapComponentProps> = ({ lat, lng, zoom }) => {
     const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || '';
 
     if (!GOOGLE_MAPS_KEY) {
         throw new Error('Google Maps API Key is missing');
     }
 
-    return (
-        <LoadScript googleMapsApiKey={GOOGLE_MAPS_KEY}>
-            <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={zoom}
-                options={mapDark}>
+    const [windowSize, setWindowSize] = useState({ width: 640, height: 640 });
 
-                <Circle
-                    center={center}
-                    options={{
-                        fillColor: '#134E4A',
-                        fillOpacity: 0.3,
-                        strokeColor: '#022C22',
-                        strokeOpacity: 0.8,
-                        strokeWeight: 2,
-                        radius: 4000, // Radius in meters
-                    }}
-                />
-                {/* You can add markers or other components here */}
-            </GoogleMap>
-        </LoadScript>
+    // Function to dynamically update the window size for 100vw/100vh
+    useEffect(() => {
+        const updateSize = () => {
+            const newWidth = Math.min(window.innerWidth, 640); // Limiting to 640px for free-tier
+            const newHeight = Math.min(window.innerHeight, 640); // Limiting to 640px for free-tier
+            setWindowSize({ width: newWidth, height: newHeight });
+        };
+
+        // Update size on window resize
+        window.addEventListener('resize', updateSize);
+        updateSize(); // Initial call to set size
+
+        // Cleanup listener on unmount
+        return () => window.removeEventListener('resize', updateSize);
+    }, []);
+
+    // Construct the Google Static Maps API URL
+    const mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${windowSize.width}x${windowSize.height}&key=${GOOGLE_MAPS_KEY}&maptype=roadmap`;
+
+    return (
+        <div style={{ width: '100vw', height: '100vh' }}>
+            <img
+                src={mapUrl}
+                alt="Map location"
+                className="map-image"
+            />
+        </div>
     );
 };
 
