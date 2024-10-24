@@ -19,7 +19,7 @@ h2 {
 }
 
 h3 {
-  font: 2rem/3rem 'Bebas Neue', Helvetica Neue, sans-serif;
+  font: 1.8rem/2.8rem 'Bebas Neue', Helvetica Neue, sans-serif;
 }
 
 h4 {
@@ -61,6 +61,11 @@ h1, h2, h3, h4, p {
 :root {
   --background: theme('colors.slate.200');
   --foreground: theme('colors.slate.900');
+}
+
+.homepage-container {
+  background-image: url("../../../public/images/weather-app-bg.jpg");
+  background-repeat: no-repeat;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -130,4 +135,13 @@ ul {
   li {
     margin-left: 20px;
   }
+}
+
+.outlined-text {
+  color: white; /* Set the base color of the text */
+  text-shadow:
+          -2px -2px 0 theme('colors.gray.600'),
+          2px -2px 0 theme('colors.gray.600'),
+          -2px  2px 0 theme('colors.gray.600'),
+          2px  2px 0 theme('colors.gray.600');
 }

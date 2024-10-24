@@ -16,46 +16,12 @@ export default function Home() {
 
     return (
         <div
-            className="tw-grid tw-grid-rows-[20px_1fr_20px] tw-items-center tw-justify-items-center tw-min-h-screen tw-pb-20 tw-gap-5">
+            className="homepage-container tw-grid tw-grid-rows-[20px_1fr_20px] tw-items-center tw-justify-items-center tw-min-h-screen tw-pb-20 tw-gap-5">
             <main className="tw-flex tw-flex-col tw-gap-8 tw-row-start-2 tw-items-center sm:tw-items-start">
 
-                <div className="tw-px-5 tw-flex tw-w-full tw-justify-center">
-                    <h1>Welcome</h1>
-                </div>
-
-                <div className="tw-p-5 tw-hidden xl:tw-block">
-                    <p>
-                        This application is a current weather information app built using Next.js, where users can
-                        view
-                        the
-                        live weather conditions for a selected location. A key highlight is the use of Server-side
-                        rendering
-                        (SSR), which allows the app to fetch weather data dynamically from external APIs, ensuring
-                        that
-                        content is delivered quickly and optimized for performance and SEO.
-                    </p>
-
-                    <p>Throughout the development, several important features were implemented:</p>
-
-                    <ul>
-                        <li>
-                            Next.js: The app utilizes Next.js for server-side rendering and dynamic routing,
-                            providing a fast,
-                            reliable user experience.
-                        </li>
-                        <li>
-                            Tailwind CSS: Tailwind CSS is applied to ensure a responsive and modern design across
-                            different screen sizes, making the app visually appealing and user-friendly.
-                        </li>
-                        <li>
-                            Google Maps API: Integrated the Google Maps API to display an interactive map of the
-                            selected location, allowing users to see their weather in a geographical context.
-                        </li>
-                        <li>
-                            Error Handling and Fallbacks: Set up robust error handling to provide fallback content (like
-                            default maps) when issues with API calls occur.
-                        </li>
-                    </ul>
+                <div className="tw-px-5 tw-flex tw-flex-col tw-w-full tw-justify-center tw-items-center tw-text-center">
+                    <h1 className="outlined-text">Welcome</h1>
+                    <h3 className="outlined-text">Enter location to see current weather</h3>
                 </div>
 
                 <div

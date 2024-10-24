@@ -11,7 +11,6 @@ import rainChartOption from "@/app/charts/rain";
 import pressureChartOption from "@/app/charts/pressure";
 import humidityChartOption from "@/app/charts/humidity";
 import MapComponent from '../../app/components/Map';
-import {WeatherConditionMapper} from "@/app/utils/weather-conditions";
 import { useRouter } from 'next/navigation';
 
 interface WeatherPageProps {
@@ -77,10 +76,6 @@ const WeatherPage: React.FC<WeatherPageProps> = (
             },
         ],
     };
-
-    const mapper = new WeatherConditionMapper();
-    const condition = mapper.getMappingByCode(weatherData.current.condition.code);
-    const conditionImage = weatherData.current.is_day ? `http://openweathermap.org/img/wn/${condition?.openweathermapDayIcon}.png` : `http://openweathermap.org/img/wn/${condition?.openweathermapNightIcon}.png`;
 
     return (
         <>
