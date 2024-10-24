@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import {useRouter} from 'next/navigation';
 import {useState} from "react";
+import UsefulLinks from "@/app/components/UsefulLinks";
 
 export default function Home() {
     const [location, setLocation] = useState('');
@@ -73,10 +73,11 @@ export default function Home() {
                 </div>
             </main>
             <footer className="tw-row-start-3 tw-flex tw-gap-6 tw-flex-wrap tw-items-center tw-justify-center">
-                <button
-                    className="tw-flex tw-items-center tw-justify-center tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-gap-2 tw-rounded-lg">
-                    <span> Netlify</span>
-                </button>
+                <UsefulLinks/>
+                {/*<button*/}
+                {/*    className="tw-flex tw-items-center tw-justify-center tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-gap-2 tw-rounded-lg">*/}
+                {/*    <span>Netlify</span>*/}
+                {/*</button>*/}
             </footer>
         </div>
     );
