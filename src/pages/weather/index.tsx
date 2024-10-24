@@ -171,21 +171,6 @@ const WeatherPage: React.FC<WeatherPageProps> = (
                             style={{width: '100%', height: '100%'}}
                         />
                     </div>
-
-                    {/* CONDITION */}
-                    {/*<div className="weather-card tw-shadow-md tw-rounded-lg tw-p-6 tw-flex tw-flex-col tw-items-center*/}
-                    {/*tw-w-full tw-h-[400px] animated fadeIn">*/}
-                    {/*    <h3 className="tw-mb-4">{current.condition.text}</h3>*/}
-                    {/*    <div>*/}
-                    {/*        /!*    <img src={current.condition.icon}*!/*/}
-                    {/*        /!*         alt="Condition image" width={120} height={120}/>*!/*/}
-                    {/*        <img src={conditionImage} alt={condition?.condition} width={120} height={120}/>*/}
-                    {/*    </div>*/}
-                    {/*    <h3 className="tw-mb-4">Humidity</h3>*/}
-                    {/*    <div className="tw-flex tw-flex-auto tw-justify-center tw-items-center">*/}
-                    {/*        <h1>{current.humidity}%</h1>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
             </div>
         </>
