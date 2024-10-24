@@ -63,7 +63,9 @@ const temperatureChartOption = {
                 fontWeight: 'bolder',
                 fontFamily: 'Montserrat',
                 formatter: '{value} °C',
-                color: 'inherit'
+                color: 'inherit',
+                textBorderColor: '#292524',
+                textBorderWidth: 3,
             },
             data: [
                 {

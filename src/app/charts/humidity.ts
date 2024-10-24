@@ -1,4 +1,4 @@
-const rainChartOption = {
+const humidityChartOption = {
     series: [
         {
             type: 'gauge',
@@ -7,7 +7,7 @@ const rainChartOption = {
             startAngle: 200,
             endAngle: -20,
             min: 0,
-            max: 40,
+            max: 100,
             axisLine: {
                 lineStyle: {
                     width: 20,
@@ -59,7 +59,7 @@ const rainChartOption = {
                 fontSize: 30,
                 fontWeight: 'bolder',
                 fontFamily: 'Montserrat',
-                formatter: '{value} mm',
+                formatter: '{value}%',
                 color: 'inherit',
                 textBorderColor: '#292524',
                 textBorderWidth: 3,
@@ -73,4 +73,4 @@ const rainChartOption = {
     ]
 };
 
-export default rainChartOption;
+export default humidityChartOption;

@@ -13,9 +13,9 @@ const pressureChartOption = {
                 lineStyle: {
                     width: 20,
                     color: [
-                        [0.6, '#5B21B6'],
-                        [0.8, '#0E7490'],
-                        [1, '#991B1B']
+                        [0.6, '#F0ABFC'],
+                        [0.8, '#67E8F9'],
+                        [1, '#F87171']
                     ]
                 }
             },
@@ -57,8 +57,10 @@ const pressureChartOption = {
                 fontSize: 30,
                 fontWeight: 'bolder',
                 fontFamily: 'Montserrat',
-                formatter: '{value} mph',
-                color: 'inherit'
+                formatter: '{value} hPa',
+                color: 'inherit',
+                textBorderColor: '#292524',
+                textBorderWidth: 3,
             },
             data: [
                 {

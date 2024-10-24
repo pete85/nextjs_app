@@ -10,9 +10,9 @@ const windChartOption = {
                 lineStyle: {
                     width: 20,
                     color: [
-                        [0.2, '#06B6D4'],
-                        [0.6, '#FBBF24'],
-                        [1, '#DC2626']
+                        [0.2, '#67E8F9'],
+                        [0.6, '#FACC15'],
+                        [1, '#F87171']
                     ]
                 }
             },
@@ -54,7 +54,10 @@ const windChartOption = {
                 fontWeight: 'bolder',
                 fontFamily: 'Montserrat',
                 formatter: '{value} mph',
-                color: 'inherit'
+                color: 'inherit',
+                textBorderColor: '#292524',
+                textBorderWidth: 3,
+
             },
             data: [
                 {

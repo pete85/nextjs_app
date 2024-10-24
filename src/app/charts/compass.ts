@@ -62,6 +62,8 @@ const compassOption = {
                 fontSize: 20,
                 color: 'auto',
                 offsetCenter: [0, '60%'],
+                textBorderColor: '#292524',
+                textBorderWidth: 3,
             },
             data: [
                 {

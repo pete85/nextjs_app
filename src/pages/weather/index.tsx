@@ -9,6 +9,7 @@ import windChartOption from "@/app/charts/wind";
 import compassOption from "@/app/charts/compass";
 import rainChartOption from "@/app/charts/rain";
 import pressureChartOption from "@/app/charts/pressure";
+import humidityChartOption from "@/app/charts/humidity";
 import MapComponent from '../../app/components/Map';
 import {WeatherConditionMapper} from "@/app/utils/weather-conditions";
 import { useRouter } from 'next/navigation';
@@ -21,6 +22,7 @@ interface WeatherPageProps {
     windDirectionOption: EChartsOption;
     rainOption: EChartsOption;
     pressureOption: EChartsOption;
+    humidityOption: EChartsOption;
 }
 
 const WeatherPage: React.FC<WeatherPageProps> = (
@@ -30,7 +32,8 @@ const WeatherPage: React.FC<WeatherPageProps> = (
         windOption,
         windDirectionOption,
         rainOption,
-        pressureOption
+        pressureOption,
+        humidityOption
     }) => {
     const {location, current} = weatherData;
     const router = useRouter();
@@ -78,7 +81,6 @@ const WeatherPage: React.FC<WeatherPageProps> = (
     const mapper = new WeatherConditionMapper();
     const condition = mapper.getMappingByCode(weatherData.current.condition.code);
     const conditionImage = weatherData.current.is_day ? `http://openweathermap.org/img/wn/${condition?.openweathermapDayIcon}.png` : `http://openweathermap.org/img/wn/${condition?.openweathermapNightIcon}.png`;
-    console.log('condition: ', condition);
 
     return (
         <>
@@ -148,6 +150,19 @@ const WeatherPage: React.FC<WeatherPageProps> = (
                         />
                     </div>
 
+                    {/* HUMIDITY */}
+                    <div className="weather-card tw-shadow-md tw-rounded-lg tw-p-6 tw-flex tw-flex-col tw-items-center
+                tw-w-full tw-h-[400px] animated fadeIn">
+                        <h3 className="tw-mb-4">Humidity</h3>
+                        <ReactECharts
+                            option={humidityOption}
+                            notMerge={true}
+                            lazyUpdate={true}
+                            theme={"theme_name"}
+                            style={{width: '100%', height: '100%'}}
+                        />
+                    </div>
+
 
                     {/* AIR PRESSURE */}
                     <div className="weather-card tw-shadow-md tw-rounded-lg tw-p-6 tw-flex tw-flex-col tw-items-center
@@ -163,19 +178,19 @@ const WeatherPage: React.FC<WeatherPageProps> = (
                     </div>
 
                     {/* CONDITION */}
-                    <div className="weather-card tw-shadow-md tw-rounded-lg tw-p-6 tw-flex tw-flex-col tw-items-center
-                    tw-w-full tw-h-[400px] animated fadeIn">
-                        <h3 className="tw-mb-4">{current.condition.text}</h3>
-                        <div>
-                            {/*    <img src={current.condition.icon}*/}
-                            {/*         alt="Condition image" width={120} height={120}/>*/}
-                            <img src={conditionImage} alt={condition?.condition} width={120} height={120}/>
-                        </div>
-                        <h3 className="tw-mb-4">Humidity</h3>
-                        <div className="tw-flex tw-flex-auto tw-justify-center tw-items-center">
-                            <h1>{current.humidity}%</h1>
-                        </div>
-                    </div>
+                    {/*<div className="weather-card tw-shadow-md tw-rounded-lg tw-p-6 tw-flex tw-flex-col tw-items-center*/}
+                    {/*tw-w-full tw-h-[400px] animated fadeIn">*/}
+                    {/*    <h3 className="tw-mb-4">{current.condition.text}</h3>*/}
+                    {/*    <div>*/}
+                    {/*        /!*    <img src={current.condition.icon}*!/*/}
+                    {/*        /!*         alt="Condition image" width={120} height={120}/>*!/*/}
+                    {/*        <img src={conditionImage} alt={condition?.condition} width={120} height={120}/>*/}
+                    {/*    </div>*/}
+                    {/*    <h3 className="tw-mb-4">Humidity</h3>*/}
+                    {/*    <div className="tw-flex tw-flex-auto tw-justify-center tw-items-center">*/}
+                    {/*        <h1>{current.humidity}%</h1>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </>
@@ -190,6 +205,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const windDirectionOption = {...compassOption};
     const rainOption = {...rainChartOption};
     const pressureOption = {...pressureChartOption};
+    const humidityOption = {...humidityChartOption};
     const location = context.query.q || "London";
 
     if (!API_KEY) {
@@ -211,8 +227,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         setWindOptions(weatherData.current.wind_mph, weatherData.current.wind_dir, weatherData.current.wind_degree);
         setRainOptions(weatherData.current.precip_mm);
         setPressureOptions(weatherData.current.pressure_mb);
-
-        console.log('WEATHER DATA: ', weatherData);
+        setHumidityOptions(weatherData.current.humidity);
 
         if (!weatherData.current || !weatherData.location) {
             throw new Error('Weather data is not available');
@@ -225,7 +240,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                 windOption,
                 windDirectionOption,
                 rainOption,
-                pressureOption
+                pressureOption,
+                humidityOption
             },
         };
     } catch (error) {
@@ -352,6 +368,15 @@ const setPressureOptions = (pressure: number) => {
     pressureChartOption.series[0].data = [
         {
             value: pressure
+        }
+    ];
+};
+
+const setHumidityOptions = (humidity: number) => {
+
+    humidityChartOption.series[0].data = [
+        {
+            value: humidity
         }
     ];
 };
